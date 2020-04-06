@@ -16,17 +16,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
- 
+
     public class ProductsController : BaseApiController
     {
-        
+
         private readonly IGenericRepository<Product> _productsRepo;
         private readonly IGenericRepository<ProductType> _productTypeRepo;
         private readonly IGenericRepository<ProductBrand> _productBrandRepo;
         private readonly IMapper _mapper;
 
-        public ProductsController(IGenericRepository<Product> productsRepo, 
-                                  IGenericRepository<ProductType> productTypeRepo, 
+        public ProductsController(IGenericRepository<Product> productsRepo,
+                                  IGenericRepository<ProductType> productTypeRepo,
                                   IGenericRepository<ProductBrand> productBrandRepo,
                                   IMapper mapper)
 
@@ -41,7 +41,7 @@ namespace API.Controllers
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
          [FromQuery] ProductSpecParams productParams)
         {
-            
+
             var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
 
             var countSpec = new ProductWithFiltersForCountSpecification(productParams);
@@ -52,7 +52,7 @@ namespace API.Controllers
 
             var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
-            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, 
+            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex,
                         productParams.PageSize, totalItems, data));
         }
 
@@ -63,15 +63,15 @@ namespace API.Controllers
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
 
-           
+
 
 
             var product = await _productsRepo.GetEntityWithSpec(spec);
-            
-            if(product == null) return NotFound(new ApiResponse(404));
+
+            if (product == null) return NotFound(new ApiResponse(404));
 
             return _mapper.Map<Product, ProductToReturnDto>(product);
-            
+
         }
 
         [HttpGet("brands")]
