@@ -11,3 +11,21 @@
   right: 32px;
 
 }
+
+a{
+  text-decoration: none;
+  columns: #343a40;
+
+  &.active {
+    color: orange
+  }
+}
+
+.logo{
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+}

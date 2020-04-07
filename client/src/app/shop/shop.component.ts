@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ShopService } from './shop.service';
-import { IProduct } from '../shared/models/products';
+import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/producttype';
 import { IBrand } from '../shared/models/brand';
 import { ShopParams } from '../shared/models/shopParams';
