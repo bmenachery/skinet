@@ -12,7 +12,7 @@ import { empty } from 'rxjs';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', {static: true}) SearchTerm: ElementRef;
+  @ViewChild('search', {static: false}) SearchTerm: ElementRef;
   products: IProduct[];
   brands: IBrand[];
   types: IType[];
@@ -81,9 +81,9 @@ export class ShopComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
-    if(this.shopParams.pageNumber !== event){
+    if (this.shopParams.pageNumber !== event) {
       this.shopParams.pageNumber = event;
-      this.getProducts();}
+      this.getProducts(); }
   }
 
   onSearch() {
