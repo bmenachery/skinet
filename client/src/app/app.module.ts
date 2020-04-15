@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShopModule } from './shop/shop.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 
 
@@ -27,6 +28,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
